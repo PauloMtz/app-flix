@@ -24,3 +24,8 @@
     border-radius: 5px;
     font-size: 18px;
 }
+
+.favoritos:hover {
+    background-color: #700000;
+    font-size: 19px;
+}
