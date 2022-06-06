@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 import './style.css';
 
 function Filme() {
     const { id } = useParams();
+    const navigate = useNavigate();
+
     const [ filme, setFilme ] = useState({});
     const [ carregando, setCarregando ] = useState(true);
 
@@ -22,7 +24,9 @@ function Filme() {
                 setCarregando(false);
             })
             .catch(() => {
-                console.log("Filme não encontrado")
+                console.log("Filme não encontrado");
+                navigate("/", {replace: true});
+                return;
             })
         }
 
@@ -31,7 +35,7 @@ function Filme() {
         return () => {
             console.log("Componente desmontado com sucesso!")
         }
-    }, [])
+    }, [navigate, id])
 
     if (carregando) {
         return (
@@ -52,7 +56,13 @@ function Filme() {
             <strong>Avaliação: {filme.vote_average} / 10</strong>
             <div className='area-buttons'>
                 <button>Salvar</button>
-                <button><a href='#'>Trailer</a></button>
+                <button>
+                    <a 
+                        target="_blank" rel='external'
+                        href={`https://youtube.com/results?search_query=${filme.title} Trailer`}>
+                        Trailer
+                    </a>
+                </button>
             </div>
         </div>
     )
