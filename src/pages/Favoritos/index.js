@@ -10,9 +10,20 @@ function Favoritos() {
         setFilmes(JSON.parse(minhaLista) || []);
     }, []);
 
+    function excluirFilme(id) {
+        //alert("ID: " + id)
+        let filtroFilmes = filmes.filter((item) => {
+            return (item.id !== id);
+        })
+
+        setFilmes(filtroFilmes);
+        localStorage.setItem("@app-flix", JSON.stringify(filtroFilmes));
+    }
+
     return (
         <div className='minha-lista'>
             <h1>Minha Lista</h1>
+            {filmes.length === 0 && <span>Sua lista está vazia :(</span>}
             <ul>
                 {filmes.map((item) => {
                     return (
@@ -20,7 +31,7 @@ function Favoritos() {
                             <span>{item.title}</span>
                             <div>
                                 <Link to={`/filme/${item.id}`}>Detalhes</Link>
-                                <button>Excluir</button>
+                                <button onClick={() => excluirFilme(item.id)}>Excluir</button>
                             </div>
                         </li>
                     )
