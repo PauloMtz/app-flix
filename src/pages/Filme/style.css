@@ -1,0 +1,51 @@
+.detalhes-filme {
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    padding: 0 10px;
+}
+
+.detalhes-filme h2 {
+    margin: 14px 0;
+}
+
+.detalhes-filme img {
+    border-radius: 8px;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.detalhes-filme h3 {
+    margin-top: 14px;
+}
+
+.detalhes-filme span {
+    margin: 10px 0; /* 10 em cima e embaixo, e 0 nas laterais */
+}
+
+.area-buttons button {
+    margin-right: 12px;
+    margin-top: 14px;
+    font-size: 20px;
+    border: 0;
+    outline: none;
+    padding: 10px 20px; /* 10 em cima e embaixo, e 20 nas laterais */
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.area-buttons button:hover {
+    background-color: brown;
+    color: #FFF;
+}
+
+.area-buttons a {
+    text-decoration: none;
+    color: black;
+}
+
+.area-buttons a:hover {
+    color: #FFF;
+}
