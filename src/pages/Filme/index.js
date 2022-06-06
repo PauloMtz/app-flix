@@ -37,6 +37,21 @@ function Filme() {
         }
     }, [navigate, id])
 
+    function salvarFilme() {
+        const minhaLista = localStorage.getItem("@app-flix");
+        let filmesSalvos = JSON.parse(minhaLista) || [];
+        const hasFilme = filmesSalvos.some((filmeSalvo) => filmeSalvo.id === filme.id)
+
+        if (hasFilme) {
+            alert("Este filme já foi adicionado à sua lista.");
+            return;
+        }
+
+        filmesSalvos.push(filme);
+        localStorage.setItem("@app-flix", JSON.stringify(filmesSalvos));
+        alert("Filme adicionado à sua lista com sucesso!");
+    }
+
     if (carregando) {
         return (
             <div className='detalhes-filme'>
@@ -55,10 +70,10 @@ function Filme() {
             <span>{filme.overview}</span>
             <strong>Avaliação: {filme.vote_average} / 10</strong>
             <div className='area-buttons'>
-                <button>Salvar</button>
+                <button onClick={salvarFilme}>Salvar</button>
                 <button>
                     <a 
-                        target="_blank" rel='external'
+                        target="blank" rel='external'
                         href={`https://youtube.com/results?search_query=${filme.title} Trailer`}>
                         Trailer
                     </a>
