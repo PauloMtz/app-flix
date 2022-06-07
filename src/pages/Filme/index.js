@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import api from '../../services/api';
 import './style.css';
 
@@ -43,13 +44,15 @@ function Filme() {
         const hasFilme = filmesSalvos.some((filmeSalvo) => filmeSalvo.id === filme.id)
 
         if (hasFilme) {
-            alert("Este filme já foi adicionado à sua lista.");
+            //alert("Este filme já foi adicionado à sua lista.");
+            toast.warning("Este filme já foi adicionado à sua lista.")
             return;
         }
 
         filmesSalvos.push(filme);
         localStorage.setItem("@app-flix", JSON.stringify(filmesSalvos));
-        alert("Filme adicionado à sua lista com sucesso!");
+        //alert("Filme adicionado à sua lista com sucesso!");
+        toast.success("Filme adicionado à sua lista com sucesso!");
     }
 
     if (carregando) {
